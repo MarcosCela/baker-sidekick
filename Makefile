@@ -14,4 +14,5 @@ push: ## Push the image to the dockerhub registry
 
 test: ## Test the image locally by using docker compose
 	@echo "Going to test image with docker compose..."
-	docker-compose -f testing/docker-compose.yaml up --force-recreate
+	@docker-compose -f testing/docker-compose.yaml down -v
+	@docker-compose -f testing/docker-compose.yaml up --force-recreate
