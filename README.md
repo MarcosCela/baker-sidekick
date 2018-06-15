@@ -59,7 +59,7 @@ services:
   # The sidekick ENTRYPOINT attempts to copy the files that are needed to the shared volume. It
   # needs to be mounted in /shared, but it should be easy to change that if needed.
   sidekick:
-    image:  markoscl/sidekick:latest
+    image:  markoscl/baker-sidekick:latest
     volumes:
       - shared:/shared
   test-agent-alpine:
