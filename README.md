@@ -9,6 +9,8 @@
 
 # Sidekick image
 
+[![](https://images.microbadger.com/badges/image/markoscl/baker-sidekick.svg)](https://microbadger.com/images/markoscl/baker-sidekick)
+
 This repository contains the needed code for a sidekick image:
 
 A sidekick image aims to provide a JDK and other needed tools to transform ANY other docker
