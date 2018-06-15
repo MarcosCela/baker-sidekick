@@ -4,7 +4,7 @@ RUN apk update && apk add --no-cache curl
 # Let's work in a common directory!
 WORKDIR /home/bamboo
 # Now download the agent JAR directly from atlassian's repository
-RUN curl --fail --silent -# \
+RUN curl --fail \
     https://packages.atlassian.com/maven-closedsource-local/com/atlassian/bamboo/bamboo-agent/6.4.0/bamboo-agent-6.4.0.jar\
     --output "bamboo-agent.jar"
 
@@ -13,20 +13,19 @@ RUN curl --fail --silent -# \
 # To solve this problem, we install this beautiful package that allows us to run glibc compiled binaries (like "java"),
 # inside an alpine based container.
 # If the container is not alpine based, this step is not needed (see "run-agent.sh").
-RUN curl -L --fail --silent -# https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.27-r0/glibc-2.27-r0.apk\
+RUN curl -L --fail https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.27-r0/glibc-2.27-r0.apk\
     --output "glibc.apk"
 
 # Use multi-stage build to generate a really small image
 FROM alpine as final
+MAINTAINER github/Markoscl
 # Since this image is like a "docker volume" (its purpose is to change data from one directory to another "shared" directory),
 # use a small image.
 VOLUME /shared-origin
 VOLUME /shared
-# Add this group
-RUN addgroup -S bamboo && adduser -S -G bamboo bamboo
-COPY --from=jdk --chown=bamboo:bamboo /opt/java/openjdk/jdk8u172-b11 /shared-origin/jdk
-COPY --from=jdk --chown=bamboo:bamboo /home/bamboo/bamboo-agent.jar /shared-origin/bamboo/bamboo-agent.jar
-COPY --from=jdk --chown=bamboo:bamboo /home/bamboo/glibc.apk /shared-origin/glibc.apk
-COPY scripts /shared-origin/bamboo/run-agent.sh
-COPY scripts /copy.sh
+COPY --from=jdk /opt/java/openjdk/jdk8u172-b11 /shared-origin/jdk
+COPY --from=jdk /home/bamboo/bamboo-agent.jar /shared-origin/bamboo/bamboo-agent.jar
+COPY --from=jdk /home/bamboo/glibc.apk /shared-origin/glibc.apk
+COPY scripts/run-agent.sh /shared-origin/bamboo/run-agent.sh
+COPY scripts/copy.sh /copy.sh
 ENTRYPOINT ["/bin/sh","/copy.sh"]
