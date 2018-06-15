@@ -119,3 +119,11 @@ in a K8s cluster ready to build. It is currently in progress, but it has shown p
 # Contribute
 Feel free to contribute either with a pull request, a suggestion or something else!
  
+ 
+# Docker images licenses
+As with all Docker images, other software is likely to be included, which might be under other licenses,
+(such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary 
+software being contained).
+
+As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies
+ with any relevant licenses for all software contained within.
