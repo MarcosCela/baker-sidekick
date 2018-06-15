@@ -7,7 +7,10 @@ AGENT_DESCRIPTION=${AGENT_DESCRIPTION:-""} # By default do not provide a descrip
 CERT_FLAG=""
 TOKEN_FLAG=""
 JAVA_CMD="/shared/jdk/jre/bin/java"
+# Attempt to install glibc if we are in an "alpine based" image, of just output a log if the install goes wrong:
+# (maybe no apk found, maybe no file, maybe fail...)
 apk add --allow-untrusted /shared/glibc.apk || echo "APK seems to not be installed"
+
 if [ -z "${BAMBOO_TOKEN}" ]; then
     echo "Warning: agent is not using a secure token. This is not recommended!"
 else
