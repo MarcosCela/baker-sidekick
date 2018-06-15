@@ -6,23 +6,21 @@ WORKDIR /home/bamboo
 # Now download the agent JAR directly from atlassian's repository
 RUN curl --fail \
     https://packages.atlassian.com/maven-closedsource-local/com/atlassian/bamboo/bamboo-agent/6.4.0/bamboo-agent-6.4.0.jar\
-    --output "bamboo-agent.jar"
-
 # The user wants to be able to use ANY image, but "alpine" based docker images do not have glibc.
 # OpenJDK is compiled against glibc, so it will fail.
 # To solve this problem, we install this beautiful package that allows us to run glibc compiled binaries (like "java"),
 # inside an alpine based container.
 # If the container is not alpine based, this step is not needed (see "run-agent.sh").
-RUN curl -L --fail https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.27-r0/glibc-2.27-r0.apk\
+    --output "bamboo-agent.jar" && curl -L --fail https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.27-r0/glibc-2.27-r0.apk\
     --output "glibc.apk"
+
 
 # Use multi-stage build to generate a really small image
 FROM alpine as final
 MAINTAINER github/Markoscl
 # Since this image is like a "docker volume" (its purpose is to change data from one directory to another "shared" directory),
 # use a small image.
-VOLUME /shared-origin
-VOLUME /shared
+VOLUME /shared-origin /shared
 COPY --from=jdk /opt/java/openjdk/jdk8u172-b11 /shared-origin/jdk
 COPY --from=jdk /home/bamboo/bamboo-agent.jar /shared-origin/bamboo/bamboo-agent.jar
 COPY --from=jdk /home/bamboo/glibc.apk /shared-origin/glibc.apk
