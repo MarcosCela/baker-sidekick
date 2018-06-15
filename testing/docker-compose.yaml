@@ -1,0 +1,33 @@
+version: "3"
+
+# This is the shared volume that both containers will use together. The same setup can be
+# achieved in Kubernetes by launching sidekick and "alpine" (or other) in the same pod, using
+# a shared volume
+volumes:
+  shared:
+
+services:
+  # The sidekick ENTRYPOINT attempts to copy the files that are needed to the shared volume. It
+  # needs to be mounted in /shared, but it should be easy to change that if needed.
+  sidekick:
+    image:  markoscl/sidekick:latest
+    volumes:
+      - shared:/shared
+  test-agent-alpine:
+  # This will be the user provided image. As you can see, it works with
+  # an image that does not originally have a JRE, the agent, or even
+  # the glibc base. Other images like "ubuntu", "mvn", "node" etc should
+  # also work
+    image: alpine
+    # Change the ENTRYPOINT of the image, so it runs the run-agent.sh instead of the default image ENTRYPOINT
+    # This ensures that the image gets launched (if no errors are found)
+    command: ["/bin/sh","-c", "/shared/bamboo/run-agent.sh"]
+    env_file:
+      # You can specify environment variables for the bamboo agent etc. You will need to modify
+      # run-agent.sh if you want to add more information (like bamboo token etc...)
+      - common.env
+    volumes:
+      - shared:/shared
+    depends_on:
+    # This can also be done on K8s with "init containers".
+      - sidekick
