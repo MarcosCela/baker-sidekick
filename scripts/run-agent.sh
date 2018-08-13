@@ -52,7 +52,10 @@ if [ -z "${BAKER_PLANS}" ]; then
 else
 
     echo "Agent is set to build the following: $(echo ${BAKER_PLANS} | base64 -d)"
-    echo bakerplans=${BAKER_PLANS} >> bamboo-capabilities.properties
+    echo bakerplans=${BAKER_PLANS} >> /shared/bamboo/bamboo-capabilities.properties
+    echo bakerplans=${BAKER_PLANS} >> /shared/bamboo/bamboo-agent-home/bamboo-capabilities.properties
+    echo bakerplanss=test >> /shared/bamboo/bamboo-agent-home/bamboo-capabilities.properties
+
 fi
 ########################################################################################################################
 ########################################################################################################################
