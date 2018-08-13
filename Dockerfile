@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk8:jdk8u172-b11-alpine as jdk
+FROM adoptopenjdk/openjdk8:alpine as jdk
 # Install curl to download other dependencies
 RUN apk update && apk add --no-cache curl
 # Let's work in a common directory!
