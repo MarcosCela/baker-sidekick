@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+# This script returns 0 (success) when the agent logs say "ready to receive builds"
+# This can be used by kubernetes to check that the agent is indeed running and ready
+grep -q "ready to receive builds" /home/bamboo/bamboo-agent-home/logs/atlassian-bamboo.log

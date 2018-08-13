@@ -25,5 +25,6 @@ COPY --from=jdk /opt/java/openjdk/jdk8u172-b11 /shared-origin/jdk
 COPY --from=jdk /home/bamboo/bamboo-agent.jar /shared-origin/bamboo/bamboo-agent.jar
 COPY --from=jdk /home/bamboo/glibc.apk /shared-origin/glibc.apk
 COPY scripts/run-agent.sh /shared-origin/bamboo/run-agent.sh
+COPY scripts/is-ready /shared-origin/bamboo/is-ready
 COPY scripts/copy.sh /copy.sh
 ENTRYPOINT ["/bin/sh","/copy.sh"]
