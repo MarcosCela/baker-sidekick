@@ -45,6 +45,15 @@ cat  <<EOF > /shared/bamboo/bamboo-agent-home/bamboo-agent.cfg.xml
 </configuration>
 EOF
 
+# For the agent dedication, we build a base 64 encoded json object
+# that serves as identification for this agent
+if [ -z "${BAKER_PLANS}" ]; then
+    echo "No plans selected (BAKER_PLANS is not set)"
+else
+
+    echo "Agent is set to build the following: $(echo ${BAKER_PLANS} | base64 -d)"
+    echo bakerplans=${BAKER_PLANS} >> bamboo-capabilities.properties
+fi
 ########################################################################################################################
 ########################################################################################################################
 ###################################### BOOTSTRAP AND RUN THE AGENT #####################################################
