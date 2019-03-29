@@ -5,7 +5,7 @@ RUN apk update && apk add --no-cache curl
 WORKDIR /home/bamboo
 # Now download the agent JAR directly from atlassian's repository
 RUN curl --fail \
-    https://packages.atlassian.com/maven-closedsource-local/com/atlassian/bamboo/bamboo-agent/6.4.0/bamboo-agent-6.4.0.jar\
+    https://packages.atlassian.com/maven-closedsource-local/com/atlassian/bamboo/bamboo-agent/6.9.0-m660/bamboo-agent-6.9.0-m660.jar\
 # The user wants to be able to use ANY image, but "alpine" based docker images do not have glibc.
 # OpenJDK is compiled against glibc, so it will fail.
 # To solve this problem, we install this beautiful package that allows us to run glibc compiled binaries (like "java"),

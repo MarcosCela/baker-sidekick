@@ -85,10 +85,6 @@ services:
 ```
 
 
-Obviously, this should be automated either by a script, a Bamboo plugin (this repository was created
-as part of a bigger Bamboo plugin, but can be used without it) etc, but can also be used for manual
-testing.
-
 ### How to test if image XXXXX is compatible?
 
 Simply change the following files:
@@ -111,16 +107,9 @@ apk installed. It has been tested with alpine based images,Debian based images e
 for any reason, it can also read the files. This has not been tested enough, so some images might
 have file permission problems. Please report them!
 
-### Can you show me an example of how to automate this?
-
-Well... not YET, but the intention is to be able to automate everything as part of a Bamboo plugin,
-where the user selects the image that wants to use for its build, and the plugin launches the agent
-in a K8s cluster ready to build. It is currently in progress, but it has shown promising results.
-
 
 # Contribute
 Feel free to contribute either with a pull request, a suggestion or something else!
- 
  
 # Docker images licenses
 As with all Docker images, other software is likely to be included, which might be under other licenses,
