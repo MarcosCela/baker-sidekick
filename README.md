@@ -2,9 +2,9 @@
 
 
 ![](https://img.shields.io/github/license/Markoscl/baker-sidekick.svg)
-![](https://img.shields.io/docker/pulls/markoscl/baker-sidekick.svg)
-![](https://img.shields.io/docker/stars/markoscl/baker-sidekick.svg)
-![](https://img.shields.io/docker/build/markoscl/baker-sidekick.svg) 
+[![](https://img.shields.io/docker/pulls/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
+[![](https://img.shields.io/docker/stars/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
+[![](https://img.shields.io/docker/build/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
 
 
 # Sidekick image
