@@ -1,15 +1,15 @@
 # BAKER-sidekick [Bamboo Agent for KubERnetes]
 
 
-![](https://img.shields.io/github/license/Markoscl/baker-sidekick.svg)
-[![](https://img.shields.io/docker/pulls/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
-[![](https://img.shields.io/docker/stars/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
-[![](https://img.shields.io/docker/build/markoscl/baker-sidekick.svg)](https://hub.docker.com/r/markoscl/baker-sidekick)
+![](https://img.shields.io/github/license/MarcosCela/baker-sidekick.svg)
+[![](https://img.shields.io/docker/pulls/marcoscela/baker-sidekick.svg)](https://hub.docker.com/r/marcoscela/baker-sidekick)
+[![](https://img.shields.io/docker/stars/marcoscela/baker-sidekick.svg)](https://hub.docker.com/r/marcoscela/baker-sidekick)
+[![](https://img.shields.io/docker/build/marcoscela/baker-sidekick.svg)](https://hub.docker.com/r/marcoscela/baker-sidekick)
 
 
 # Sidekick image
 
-[![](https://images.microbadger.com/badges/image/markoscl/baker-sidekick.svg)](https://microbadger.com/images/markoscl/baker-sidekick)
+[![](https://images.microbadger.com/badges/image/marcoscela/baker-sidekick.svg)](https://microbadger.com/images/markoscl/baker-sidekick)
 
 This repository contains the needed code for a sidekick image:
 
@@ -36,10 +36,10 @@ since they have a different set of libraries, and OpenJDK uses dynamic linking.
 Here is where the sidekick image comes into play. As an example of what this image does, we can
 see the following image:
 
-![](https://raw.githubusercontent.com/Markoscl/baker-sidekick/master/images/baker-sidekick.png)
+![](https://raw.githubusercontent.com/MarcosCela/baker-sidekick/master/images/baker-sidekick.png)
 
 The basic idea is to launch the "user provided agent (node in this case)", and launch
-***markoscl/baker-sidekick*** together. Both images share the same volume, so the sidekick
+***marcoscela/baker-sidekick*** together. Both images share the same volume, so the sidekick
 copies files from the docker image, to the shared volume, and then exits successfully.
 
 The entrypoint of the user provided image needs to be changed to ${shared-volume}/run-agent.jar (see details),
@@ -61,7 +61,7 @@ services:
   # The sidekick ENTRYPOINT attempts to copy the files that are needed to the shared volume. It
   # needs to be mounted in /shared, but it should be easy to change that if needed.
   sidekick:
-    image:  markoscl/baker-sidekick:latest
+    image:  marcoscela/baker-sidekick:latest
     volumes:
       - shared:/shared
   test-agent-alpine:

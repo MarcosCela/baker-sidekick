@@ -9,7 +9,7 @@ Some of the ways that you can contribute to this project are (but not limited to
 ## How to contribute
 Ideally, all contributions should be via pull requests, following the [Github Flow](https://guides.github.com/introduction/flow/index.html) spec.
 
-Report bugs @[GitHub issues](https://github.com/markoscl/baker/issues)
+Report bugs @[GitHub issues](https://github.com/MarcosCela/baker/issues)
 
 ### Please note that bug reports should be detailed
 
