@@ -11,14 +11,14 @@ RUN curl --fail \
 # To solve this problem, we install this beautiful package that allows us to run glibc compiled binaries (like "java"),
 # inside an alpine based container.
 # If the container is not alpine based, this step is not needed (see "run-agent.sh").
-    --output "bamboo-agent.jar" 
+    --output "bamboo-agent.jar"
 ## Download glibc
 RUN curl -L --fail https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.27-r0/glibc-2.27-r0.apk  --output "glibc.apk"
 
 
 # Use multi-stage build to generate a really small image
 FROM alpine as final
-MAINTAINER github/Markoscl
+MAINTAINER github/MarcosCela
 # Since this image is like a "docker volume" (its purpose is to change data from one directory to another "shared" directory),
 # use a small image.
 VOLUME /shared-origin /shared
